@@ -3,7 +3,7 @@ def call() {
 
         common.pipelineInit()
       stage ('Compile and build code') {
-          sh 'yum install maven -y'
+          sh 'sudo yum install maven -y'
          sh 'mvn clean package'
 
       }
