@@ -1,9 +1,11 @@
 def call() {
     node() {
 
+        common.pipelineInit()
+
     stage('Download Dependencies') {
         sh '''
-               ls -ltr
+               ls -l
                npm install 
              '''
     }
