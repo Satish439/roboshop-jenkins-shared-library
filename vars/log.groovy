@@ -24,3 +24,16 @@ def call() {
     }
   }
 }
+
+// scripted pipeline we will use node instead of pipeline and agent//
+def call() {
+  node() {
+    stage('one') {
+      sh 'echo ${COMPONENT}'
+    }
+    stage('Two') {
+      sh 'echo ${COMPONENT}'
+    }
+  }
+
+}
