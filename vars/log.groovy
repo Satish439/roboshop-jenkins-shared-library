@@ -13,7 +13,7 @@ def call() {
     stages {
       stage('One') {
         steps {
-          sh 'echo One'
+          sh echo '${COMPONENT}'
         }
       }
       stage('Two') {
