@@ -3,7 +3,7 @@ def call() {
 
         common.pipelineInit()
       stage ('Compile and build code') {
-          'mvn clean package'
+         sh 'mvn clean package'
 
       }
     }
