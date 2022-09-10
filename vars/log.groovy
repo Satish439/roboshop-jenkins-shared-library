@@ -8,20 +8,19 @@ def warning(message) {
 
 
 def call() {
-    pipeline {
-        agent any {
-        stages {
-            stages('one')
-            steps {
-                sh 'echo one'
-            }
+  pipeline {
+    agent any
+    stages {
+      stage('One') {
+        steps {
+          sh 'echo One'
         }
-        stages {
-            stages('one')
-               steps {
-                   sh 'echo two'
-               }
-
+      }
+      stage('Two') {
+        steps {
+          sh 'echo Two'
         }
+      }
     }
+  }
 }
