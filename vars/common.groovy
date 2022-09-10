@@ -11,11 +11,12 @@ def publishArtifacts() {
             sh 'zip -r ${COMPONENT}-{TAG_NAME}.zip node_modules server.js'
         }
     }
-}
-stage('Push Artifacts to Nexus') {
-    withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'pass', usernameVariable: 'user')]) {
-        sh """
+
+    stage('Push Artifacts to Nexus') {
+        withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'pass', usernameVariable: 'user')]) {
+            sh """
         curl -v -u ${user}:${pass} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://52.91.85.179:8081//repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
       """
+        }
     }
 }
