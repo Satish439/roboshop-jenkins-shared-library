@@ -1,9 +1,11 @@
 def call() {
     node() {
-        stage( 'download nodejs depenceices') {
-            sh 'ls -ltr'
-            sh 'npm install'
 
-        }
+    stage('Download Dependencies') {
+        sh '''
+               ls -ltr
+               npm install 
+             '''
     }
+}
 }
