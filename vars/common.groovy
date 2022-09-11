@@ -13,8 +13,8 @@ def publishArtifacts() {
     }
 
     stage('Push Artifacts to Nexus') {
-        withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
-            sh 'curl -v -u --username "$USER" --password "$PASSWORD" --upload-file ${COMPONENT}-${TAG_NAME}.zip http://34.238.85.190:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip'
+        withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'password', usernameVariable: 'user')]) {
+            sh 'curl -v -u --username "%USER%" --password "%PASSWORD%" --upload-file ${COMPONENT}-${TAG_NAME}.zip http://34.238.85.190:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip'
 
         }
     }
