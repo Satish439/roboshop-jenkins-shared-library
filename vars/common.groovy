@@ -8,7 +8,7 @@ def pipelineInit() {
 def publishArtifacts() {
     stage('Prepare Artifacts if tags are there') {
         if (env.APP_TYPE == "nodejs") {
-            sh 'zip -r ${COMPONENT}-{TAG_NAME}.zip node_modules server.js'
+            sh 'zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js'
         }
 
         if (env.APP_TYPE == 'maven') {
