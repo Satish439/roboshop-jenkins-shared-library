@@ -14,7 +14,7 @@ def publishArtifacts() {
         if (env.APP_TYPE == 'maven') {
 
             sh 'mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar'
-            sh 'zip -r ${COMPONENT}-${TAG-NAME}.zip ${COMPONENT}.jar'
+            sh 'zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar'
 
         }
     }
