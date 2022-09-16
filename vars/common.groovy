@@ -36,7 +36,6 @@ def codeChecks() {
                     withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'pass', usernameVariable: 'user')]) {
                         sh "sonar-scanner -Dsonar.projectKey=${COMPONENT} -Dsonar.host.url=http://3.91.226.208:9000 -Dsonar.login=${user} -Dsonar.password=${pass}"
 
-                        echo "Code Analysis"
                     }
                 },
                 unitTests: {
