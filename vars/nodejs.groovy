@@ -11,7 +11,7 @@ def call() {
       '''
         }
 
-        common.codechecks()
+
 
 
 
@@ -19,6 +19,8 @@ def call() {
         if( env.BRANCH_NAME == env.TAG_NAME )
         {
             common.publishArtifacts()
+
+            common.codechecks()
 
 
 
