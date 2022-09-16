@@ -34,7 +34,7 @@ def codechecks() {
         parallel([
               qualitychecks: {
                   withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'password', usernameVariable: 'username')]) {
-                      sh "sonar-scanner -Dsonar.projectkey=${COMPONENT} -Dsonar.host.url=http://52.201.103.29:9000 -Dsonar.login=${username} -Dsonar.password=${password}"
+                      sh "sonar-scanner -Dsonar.projectkey=${COMPONENT} -Dsonar.host.url=http://52.201.103.29:9000 -Dsonar.login=${USERNAME} -Dsonar.password=${PASSWORD}"
                   }
                   echo "hello"
               },
