@@ -23,7 +23,7 @@ def publishArtifacts() {
     stage('Push Artifacts to Nexus') {
         withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'password', usernameVariable: 'username')]) {
             sh """
-        curl -u ${USERNAME}:${PASSWORD} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://54.211.90.27:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
+        curl -u ${USERNAME}:${PASSWORD} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://3.91.226.208:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
       """
         }
     }
@@ -33,6 +33,9 @@ def codechecks() {
     stage('Quality checks and Unit Tests') {
         parallel([
               qualitychecks: {
+                  withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'password', usernameVariable: 'username')]) {
+                      sh "sonar-scanner -Dsonar.projectkey=${COMPONENT} -Dsonar.host.url=http://52.201.103.29:9000 -Dsonar.login=${username} -Dsonar.password=${password}"
+                  }
                   echo "hello"
               },
                 unitTests: {

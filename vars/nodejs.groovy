@@ -11,6 +11,8 @@ def call() {
       '''
         }
 
+        common.codechecks()
+
 
 
         // If both are equal then it is definitely a tag
@@ -18,7 +20,7 @@ def call() {
         {
             common.publishArtifacts()
 
-            common.codechecks()
+
 
 
         }
