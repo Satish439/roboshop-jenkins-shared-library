@@ -11,7 +11,7 @@ def call() {
       '''
         }
 
-        common.codechecks()
+        common.codeChecks()
 
 
 
