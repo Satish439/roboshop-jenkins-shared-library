@@ -28,3 +28,24 @@ def publishArtifacts() {
         }
     }
 }
+
+def codechecks() {
+    stage('Quality checks and Unit Tests') {
+        parallel([
+              qualitychecks: {
+                  echo "hello"
+              },
+                unitTests: {
+                    unitTests()
+
+        }
+        ])
+    }
+}
+
+def unitTests() {
+    if (evn.APP_TYPE == "nodejs") {
+        sh 'npm run test'
+        echo Run test cases
+    }
+}

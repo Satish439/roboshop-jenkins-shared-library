@@ -18,6 +18,8 @@ def call() {
         {
             common.publishArtifacts()
 
+            common.codechecks()
+
 
         }
 
