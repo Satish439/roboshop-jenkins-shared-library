@@ -29,26 +29,28 @@ def publishArtifacts() {
     }
 }
 
-def codechecks() {
-    stage('Quality checks and Unit Tests') {
+def codeChecks() {
+    stage('Quality Checks & Unit Tests') {
         parallel([
-              qualitychecks: {
-                  withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'password', usernameVariable: 'username')]) {
-                      sh "sonar-scanner -Dsonar.projectkey=${COMPONENT} -Dsonar.host.url=http://52.201.103.29:9000 -Dsonar.login=${USERNAME} -Dsonar.password=${PASSWORD}"
-                  }
-                  echo "hello"
-              },
+                qualityChecks: {
+                    withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                        sh "sonar-scanner -Dsonar.projectKey=${COMPONENT} -Dsonar.host.url=http://3.91.226.208:9000 -Dsonar.login=${user} -Dsonar.password=${pass}"
+
+                        echo "Code Analysis"
+                    }
+                },
                 unitTests: {
                     unitTests()
-
-        }
+                }
         ])
     }
 }
 
 def unitTests() {
-    if (evn.APP_TYPE == "nodejs") {
-        sh 'npm run test'
+    if (env.APP_TYPE == "nodejs") {
+        sh """
+        # npm run test 
         echo Run test cases
+      """
     }
 }
