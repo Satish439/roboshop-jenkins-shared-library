@@ -27,6 +27,7 @@ def publishArtifacts() {
       """
         }
     }
+}
 //    stage('Deploy to Dev Env') {
 //        build job: 'deploy-to-any-env', parameters: [string(name: 'COMPONENT', value: "${COMPONENT}"), string(name: 'ENV', value: "${ENV}"), string(name: 'APP_VERSION', value: "${TAG_NAME}")]
 //    }
@@ -48,31 +49,31 @@ def publishArtifacts() {
 //    }
 //}
 
-
-    def codeChecks() {
-        stage('Quality Checks & Unit Tests') {
-            parallel([
-                    qualityChecks: {
-                        withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                            sh "sonar-scanner -Dsonar.projectKey=${COMPONENT} -Dsonar.host.url=http://44.204.0.216:9000 -Dsonar.login=${user} -Dsonar.password=${pass}"
-                            sh 'sonar-quality-gate.sh $(user) ${pass} 52.201.103.29 ${COMPONENT} '
-
-                        }
-                    },
-                    unitTests    : {
-                        unitTests()
-                    }
-            ])
-        }
-    }
-
-    def unitTests() {
-        if (env.APP_TYPE == "nodejs") {
-            sh """
-                npm run test 
-                echo Run test cases
-      """
-
-        }
-    }
-}
+//
+//    def codeChecks() {
+//        stage('Quality Checks & Unit Tests') {
+//            parallel([
+//                    qualityChecks: {
+//                        withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'pass', usernameVariable: 'user')]) {
+//                            sh "sonar-scanner -Dsonar.projectKey=${COMPONENT} -Dsonar.host.url=http://44.204.0.216:9000 -Dsonar.login=${user} -Dsonar.password=${pass}"
+//                            sh 'sonar-quality-gate.sh $(user) ${pass} 52.201.103.29 ${COMPONENT} '
+//
+//                        }
+//                    },
+//                    unitTests    : {
+//                        unitTests()
+//                    }
+//            ])
+//        }
+//    }
+//
+//    def unitTests() {
+//        if (env.APP_TYPE == "nodejs") {
+//            sh """
+//                npm run test
+//                echo Run test cases
+//      """
+//
+//        }
+//    }
+//}
